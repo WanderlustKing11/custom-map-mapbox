@@ -1,5 +1,9 @@
+import React, { Suspense } from 'react';
 import Image from "next/image";
 import styles from "./page.module.css";
+
+// Lazy-load MapComponent
+const MapComponent = React.lazy(() => import('../components/MapComponent.client'));
 
 export default function Home() {
   return (
@@ -27,6 +31,10 @@ export default function Home() {
           </a>
         </div>
       </div>
+
+      <Suspense fallback={<div>Loading Map...</div>}>
+        <MapComponent />
+      </Suspense>
 
       {/* <div className={styles.center}>
         <Image
